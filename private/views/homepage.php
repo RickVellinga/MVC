@@ -21,4 +21,3 @@
 <h1>Welkom</h1>
 
 <p>Hier komt later veel meer informatie uit de database</p>
-	

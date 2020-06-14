@@ -51,7 +51,7 @@ namespace Website\Controllers;
 
         $statement->execute($params);
 
-        $bedanktUrl = url('register.thankyou');
+        $bedanktUrl = url('email.test');
         redirect($bedanktUrl);
 
       } else {

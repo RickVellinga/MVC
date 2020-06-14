@@ -30,6 +30,17 @@ function dbConnect() {
 
 }
 
+function userNotRegistered($email){
+
+	$connection = dbConnect();
+	$sql = "SELECT * FROM `gebruikers` WHERE `email` = :email";
+	$statement = $connection->prepare($sql);
+	$statement->execute( ['email' => $email] );
+
+	return ($statement->rowCount() === 0);
+
+}
+
 /**
  * Geeft de juiste URL terug: relatief aan de website root url
  * Bijvoorbeeld voor de homepage: echo url('/');
@@ -82,4 +93,85 @@ function current_route_is( $name ) {
 
 	return false;
 
+}
+
+function validateRegistrationData($data){
+	$errors = [];
+
+	$email      = filter_var( $data['email'], FILTER_VALIDATE_EMAIL);
+	$wachtwoord = trim( $data['wachtwoord']);
+
+	if ( $email === false ) {
+		$errors['email'] = 'Geen geldige email ingevuld!';
+	}
+
+	if (strlen($wachtwoord) < 6 ) {
+		$errors['wachtwoord'] = 'Geen geldig wachtwoord, minimaal 6 tekens!';
+	}
+
+	$data = [
+		'email' => $data['email'],
+		'wachtwoord' => $data['wachtwoord']
+	];
+
+	return [
+		'data' => $data,
+		'errors' => $errors
+	];
+}
+
+/**
+ * Maak de SwiftMailer aan en stet hem op de juiste manier in
+ *
+ * @return Swift_Mailer
+ */
+function getSwiftMailer() {
+	$mail_config = get_config( 'MAIL' );
+	$transport   = new \Swift_SmtpTransport( $mail_config['SMTP_HOST'], $mail_config['SMTP_PORT'] );
+	$transport->setUsername($mail_config['SMTP_USER'] );
+	$transport->setPassword($mail_config['SMTP_PASSWORD']);
+
+	$mailer = new \Swift_Mailer( $transport );
+
+	return $mailer;
+}
+
+/**
+ * Maak een Swift_Message met de opgegeven subject, afzender en ontvanger
+ *
+ * @param $to
+ * @param $subject
+ * @param $from_name
+ * @param $from_email
+ *
+ * @return Swift_Message
+ */
+function createEmailMessage( $to, $subject, $from_name, $from_email ) {
+
+	// Create a message
+	$message = new \Swift_Message( $subject );
+	$message->setFrom( [ $from_email => $from_email ] );
+	$message->setTo( $to );
+
+	// Send the message
+	return $message;
+}
+
+/**
+ *
+ * @param $message \Swift_Message De Swift Message waarin de afbeelding ge-embed moet worden
+ * @param $filename string Bestandsnaam van de afbeelding (wordt automatisch uit juiste folder gehaald)
+ *
+ * @return mixed
+ */
+function embedImage( $message, $filename ) {
+	$image_path = get_config( 'WEBROOT' ) . '/images/email/' . $filename;
+	if ( ! file_exists( $image_path ) ) {
+		throw new \RuntimeException( 'Afbeelding bestaat niet: ' . $image_path );
+	}
+	if(	$message	){
+		$cid = $message->embed( \Swift_Image::fromPath( $image_path ) );
+		return $cid;
+	}
+	return site_url('/images/email/' . $filename);
 }

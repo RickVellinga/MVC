@@ -12,20 +12,32 @@ namespace Website\Controllers;
  */
  class WebsiteController {
 
- 	public function home() {
+ 	public function winkels() {
 
  		$template_engine = get_template_engine();
- 		echo $template_engine->render('homepage');
+ 		echo $template_engine->render('winkelpagina');
+
+ 	}
+
+  public function contact() {
+
+ 		$template_engine = get_template_engine();
+ 		echo $template_engine->render('contact');
 
  	}
 
   public function winkel() {
 
-		echo "Welkom bij de winkel!";
+    $template_engine = get_template_engine();
+    echo $template_engine->render('winkels');
 
-//		$template_engine = get_template_engine();
-//		echo $template_engine->render('homepage');
+  }
 
-	}
+  public function home() {
+
+    $template_engine = get_template_engine();
+    echo $template_engine->render('home');
+
+  }
 
  }

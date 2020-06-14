@@ -1,0 +1,158 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+
+.imagemain{
+  width: 100%;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
+
+.textmain{
+  font-weight: 900;
+  background-color: #222;
+  color: white;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  font-size: 4em;
+  font-family: 'Bebas Neue', cursive;
+}
+
+/* nav */
+
+#navbar{
+  transition: top 0.3s;
+  z-index: 10;
+  padding-bottom: 25px;
+}
+
+.Contact{
+  background-color: #537859;
+  color: white !important;
+  transition: 0.3s;
+}
+
+.Contact:hover{
+  background-color: #333;
+  transition: 0.3s;
+  color: #537859 !important;
+}
+
+.header{
+  background:#333;
+  position: fixed;
+  height: 60px;
+  width: 100%;
+  padding: 0 20px;
+  color: #fff;
+}
+
+.logoss{
+  font-family: 'Righteous', cursive;
+  float: left;
+  text-transform: uppercase;
+  line-height: 55px;
+  margin-top: -0px;
+}
+
+.menu{
+  font-family: 'Righteous', cursive;
+  float: right;
+  line-height: 30px;
+}
+
+.menu a{
+  border-radius: 10px;
+  color: #537859;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0 10px;
+  transition: 0.4s;
+}
+.show-menu-btn,.hide-menu-btn{
+  transition: 0.4s;
+  font-size: 30px;
+  cursor: pointer;
+  display: none;
+}
+.show-menu-btn{
+  float: right;
+}
+.show-menu-btn i{
+  line-height: 60px;
+}
+
+.menu a:hover,
+.show-menu-btn:hover,
+.hide-menu-btn:hover{
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+@media screen and (max-width:800px) {
+  .show-menu-btn,.hide-menu-btn{
+    display: block;
+  }
+  .menu{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #333;
+    right: -100%;
+    top: 0;
+    text-align: center;
+    padding: 80px 0;
+    line-height: normal;
+    transition: 0.7s;
+  }
+  .menu a{
+    display: block;
+    padding: 20px;
+  }
+  .hide-menu-btn{
+    position: absolute;
+    top: 40px;
+    right: 40px;
+  }
+  #chk:checked ~ .menu{
+    right: 0;
+  }
+}
+
+/* end nav */
+
+.informatietext{
+  font-family: 'Bebas Neue', cursive;
+  font-size: 3em;
+  border-bottom: 4px solid black;
+  padding-bottom: 5px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 0px;
+}
+
+.maintext{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2em;
+  border-bottom: 4px solid black;
+  padding-bottom: 5px;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding-bottom: 30px;
+}
+
+.map{
+  width: 100%;
+  cursor: pointer;
+  transition: 0.3s;
+  filter: grayscale(100%);
+}
+
+.map:hover{
+    transition: 0.3s;
+    filter: grayscale(0%);
+   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+}
