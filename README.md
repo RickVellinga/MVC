@@ -1,11 +1,11 @@
 ## Project COVID-19
 
-Gemaakt door:
+# Gemaakt door:
 
-Milo Dijkman
+## Milo Dijkman
 
-Daan Carstens
+## Daan Carstens
 
-Rick Vellinga
+## Rick Vellinga
     
 http://29215.hosts2.ma-cloud.nl/bewijzenmap/opdrachten/proj/MVC/public/
