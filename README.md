@@ -2,10 +2,8 @@
 
 # Gemaakt door:
 
-## Milo Dijkman
-
-## Daan Carstens
-
-## Rick Vellinga
+1. Milo Dijkman
+1. Daan Carstens    
+1. Rick Vellinga
     
 http://29215.hosts2.ma-cloud.nl/bewijzenmap/opdrachten/proj/MVC/public/
